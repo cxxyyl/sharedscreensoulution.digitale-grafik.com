@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sharedscreensoulution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+
+        <button id="projects">Projects</button>
+        <button id="workshop">Workshop</button>
+
+        <button class="website-info info1">
+            <div class="name-year-wrapper">
+                <p>Name Vorname 1</p>
+                <p>2024</p>
+            </div>
+            <p>www.mydomain-1.net</p>
+        </button>
+
+        <button class="website-info info2">
+            <div class="name-year-wrapper">
+                <p>Name Vorname </p>
+                <p>2024</p>
+            </div>
+            <p>www.mydomain-2.net</p>
+        </button>
+
+        <button class="website-info info3">
+            <div class="name-year-wrapper">
+                <p>Name Vorname 3</p>
+                <p>2024</p>
+            </div>
+            <p>www.mydomain-3.net</p>
+        </button>
+
+        <button class="website-info info4">
+            <div class="name-year-wrapper">
+                <p>Name Vorname 4</p>
+                <p>2024</p>
+            </div>
+            <p>www.mydomain-4.net</p>
+        </button>
+
+        <button class="website-info info5">
+            <div class="name-year-wrapper">
+                <p>Name Vorname 5</p>
+                <p>2024</p>
+            </div>
+            <p>www.mydomai-5.net</p>
+        </button>
+
+        <button class="website-info info6">
+            <div class="name-year-wrapper">
+                <p>Name Vorname 6</p>
+                <p>2024</p>
+            </div>
+            <p>www.mydomain-6.net</p>
+        </button>
+
+        <button id="close" class="hidden">✕</button>
+    </nav>
+
+    <main id="" class="website-container">
+        <section class="website-preview p1"></section>
+        <section class="website-preview p2"></section>
+        <section class="website-preview p3"></section>
+        <section class="website-preview p4"></section>
+        <section class="website-preview p5"></section>
+        <section class="website-preview p6"></section>
+    </main>
+
+    <script>
+
+
+
+    const previews = document.querySelectorAll('.website-preview');
+    const websiteInfos = document.querySelectorAll('.website-info');
+
+
+    previews.forEach(preview => {
+        preview.addEventListener('mouseenter', () => {
+
+            if(preview.classList.contains("p1")){
+                websiteInfos.forEach(websiteInfo =>{
+                    if(websiteInfo.classList.contains("info1")){
+                        websiteInfo.classList.add('info-slide');
+                    }
+                });
+            }
+
+            if(preview.classList.contains("p2")){
+                websiteInfos.forEach(websiteInfo =>{
+                    if(websiteInfo.classList.contains("info2")){
+                        websiteInfo.classList.add('info-slide');
+                    }
+                });
+            }
+
+            if(preview.classList.contains("p3")){
+                websiteInfos.forEach(websiteInfo =>{
+                    if(websiteInfo.classList.contains("info3")){
+                        websiteInfo.classList.add('info-slide');
+                    }
+                });
+            }
+
+            if(preview.classList.contains("p4")){
+                websiteInfos.forEach(websiteInfo =>{
+                    if(websiteInfo.classList.contains("info4")){
+                        websiteInfo.classList.add('info-slide');
+                    }
+                });
+            }
+
+            if(preview.classList.contains("p5")){
+                websiteInfos.forEach(websiteInfo =>{
+                    if(websiteInfo.classList.contains("info5")){
+                        websiteInfo.classList.add('info-slide');
+                    }
+                });
+            }
+            
+            if(preview.classList.contains("p6")){
+                websiteInfos.forEach(websiteInfo =>{
+                    if(websiteInfo.classList.contains("info6")){
+                        websiteInfo.classList.add('info-slide');
+                    }
+                });
+            }
+        });
+
+        preview.addEventListener('mouseleave', () => {
+            websiteInfos.forEach(websiteInfo =>{        
+                websiteInfo.classList.remove('info-slide');
+            });
+        });
+    });
+
+
+    </script>
+</body>
+</html>
