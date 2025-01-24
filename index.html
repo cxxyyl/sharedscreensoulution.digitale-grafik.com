@@ -10,10 +10,10 @@
 <body>
     <nav>
 
-        <button id="projects">Projects</button>
+        <button id="projects" class="button--selected">Projects</button>
         <button id="workshop">Workshop</button>
 
-        <button class="website-info info1">
+        <button class="website-info" data-target='info1'>
             <div class="name-year-wrapper">
                 <p>Name Vorname 1</p>
                 <p>2024</p>
@@ -21,7 +21,7 @@
             <p>www.mydomain-1.net</p>
         </button>
 
-        <button class="website-info info2">
+        <button class="website-info" data-target='info2'>
             <div class="name-year-wrapper">
                 <p>Name Vorname </p>
                 <p>2024</p>
@@ -29,7 +29,7 @@
             <p>www.mydomain-2.net</p>
         </button>
 
-        <button class="website-info info3">
+        <button class="website-info" data-target='info3'>
             <div class="name-year-wrapper">
                 <p>Name Vorname 3</p>
                 <p>2024</p>
@@ -37,7 +37,7 @@
             <p>www.mydomain-3.net</p>
         </button>
 
-        <button class="website-info info4">
+        <button class="website-info" data-target='info4'>
             <div class="name-year-wrapper">
                 <p>Name Vorname 4</p>
                 <p>2024</p>
@@ -45,7 +45,7 @@
             <p>www.mydomain-4.net</p>
         </button>
 
-        <button class="website-info info5">
+        <button class="website-info" data-target='info5'>
             <div class="name-year-wrapper">
                 <p>Name Vorname 5</p>
                 <p>2024</p>
@@ -53,92 +53,87 @@
             <p>www.mydomai-5.net</p>
         </button>
 
-        <button class="website-info info6">
+        <!-- <button class="website-info info6">
             <div class="name-year-wrapper">
                 <p>Name Vorname 6</p>
                 <p>2024</p>
             </div>
             <p>www.mydomain-6.net</p>
-        </button>
+        </button> -->
 
         <button id="close" class="hidden">✕</button>
     </nav>
 
-    <main id="" class="website-container">
-        <section class="website-preview p1"></section>
-        <section class="website-preview p2"></section>
-        <section class="website-preview p3"></section>
-        <section class="website-preview p4"></section>
-        <section class="website-preview p5"></section>
-        <section class="website-preview p6"></section>
+    <main id="project-websites" class="website-container">
+        <section class="website-preview p1" data-target="info1"></section>
+        <section class="website-preview p2" data-target="info2"></section>
+        <section class="website-preview p3" data-target="info3"></section>
+        <section class="website-preview p4" data-target="info4"></section>
+        <section class="website-preview p5" data-target="info5"></section>
+        <!-- <section class="website-preview p6"></section> -->
     </main>
+
+    <main id="workshop-websites" class="website-container out-of-view-right">
+        <section class="website-preview p1" data-target="info1"></section>
+        <section class="website-preview p2" data-target="info2"></section>
+        <section class="website-preview p3" data-target="info3"></section>
+        <section class="website-preview p4" data-target="info4"></section>
+        <section class="website-preview p5" data-target="info5"></section>
+        <!-- <section class="website-preview p6"></section> -->
+    </main>
+    
+    <aside >
+        <iframe src="https://thesis.digitale-grafik.com/" frameborder="0"></iframe>
+    </aside>
 
     <script>
 
+        //  Connect the website-info to website-preview
+        const previews = document.querySelectorAll('.website-preview');
+        const websiteInfos = document.querySelectorAll('.website-info');
 
+        previews.forEach(preview => {
+            preview.addEventListener('mouseenter', () => {
+                const targetInfo = preview.dataset.target;
+                if (targetInfo) {
+                    websiteInfos.forEach(websiteInfo => {
+                        if (websiteInfo.dataset.target === targetInfo) {
+                            websiteInfo.classList.add('info-slide');
+                        }
+                    });
+                }
+            });
 
-    const previews = document.querySelectorAll('.website-preview');
-    const websiteInfos = document.querySelectorAll('.website-info');
-
-
-    previews.forEach(preview => {
-        preview.addEventListener('mouseenter', () => {
-
-            if(preview.classList.contains("p1")){
-                websiteInfos.forEach(websiteInfo =>{
-                    if(websiteInfo.classList.contains("info1")){
-                        websiteInfo.classList.add('info-slide');
-                    }
+            preview.addEventListener('mouseleave', () => {
+                websiteInfos.forEach(websiteInfo => {
+                    websiteInfo.classList.remove('info-slide');
                 });
-            }
-
-            if(preview.classList.contains("p2")){
-                websiteInfos.forEach(websiteInfo =>{
-                    if(websiteInfo.classList.contains("info2")){
-                        websiteInfo.classList.add('info-slide');
-                    }
-                });
-            }
-
-            if(preview.classList.contains("p3")){
-                websiteInfos.forEach(websiteInfo =>{
-                    if(websiteInfo.classList.contains("info3")){
-                        websiteInfo.classList.add('info-slide');
-                    }
-                });
-            }
-
-            if(preview.classList.contains("p4")){
-                websiteInfos.forEach(websiteInfo =>{
-                    if(websiteInfo.classList.contains("info4")){
-                        websiteInfo.classList.add('info-slide');
-                    }
-                });
-            }
-
-            if(preview.classList.contains("p5")){
-                websiteInfos.forEach(websiteInfo =>{
-                    if(websiteInfo.classList.contains("info5")){
-                        websiteInfo.classList.add('info-slide');
-                    }
-                });
-            }
-            
-            if(preview.classList.contains("p6")){
-                websiteInfos.forEach(websiteInfo =>{
-                    if(websiteInfo.classList.contains("info6")){
-                        websiteInfo.classList.add('info-slide');
-                    }
-                });
-            }
-        });
-
-        preview.addEventListener('mouseleave', () => {
-            websiteInfos.forEach(websiteInfo =>{        
-                websiteInfo.classList.remove('info-slide');
             });
         });
-    });
+
+
+        // Shift between the two <main> for projects and workshop 
+
+        const buttonProjects = document.getElementById('projects');
+        const buttonWorkshop = document.getElementById('workshop');
+        const projectWebsites = document.getElementById('project-websites');
+        const workshopWebsites = document.getElementById('workshop-websites');
+
+        buttonProjects.addEventListener('click', () => {
+            projectWebsites.classList.remove('out-of-view-left');
+            workshopWebsites.classList.add('out-of-view-right');
+
+            buttonProjects.classList.add('button--selected');
+            buttonWorkshop.classList.remove('button--selected');
+        });
+
+        buttonWorkshop.addEventListener('click', () => {
+            projectWebsites.classList.add('out-of-view-left');
+            workshopWebsites.classList.remove('out-of-view-right');
+
+            buttonProjects.classList.remove('button--selected');
+            buttonWorkshop.classList.add('button--selected');
+        });
 
 
     </script>

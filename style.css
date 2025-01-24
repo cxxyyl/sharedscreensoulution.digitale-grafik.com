@@ -6,6 +6,7 @@
 --spacer-m: 1rem;
 --spacer-l: 2rem; 
 --spacer-preview: 3rem; 
+--spacer-iframe: 3.5rem;
 
 --radius-m: 2rem; 
 
@@ -13,7 +14,7 @@
 --c-light:#fff;
 
 
---projects: 6;
+--projects: 5;
 }
 
 /* Reset and Basic Styling */
@@ -71,6 +72,21 @@ nav{
         background-color: transparent;
      
         font-size: 1.2rem;
+
+        transition: all 300ms ease-in-out;
+
+        cursor: pointer;
+    }
+
+    #projects:hover, #workshop:hover{
+        background-color: var(--c-dark);
+        color: var(--c-light);
+    }
+
+    /* Added by JS */
+    .button--selected{
+        background-color: var(--c-dark);
+        color: var(--c-light);
     }
 
     .website-info{
@@ -84,10 +100,12 @@ nav{
         flex-wrap: nowrap;
         justify-content: space-between;
 
+        cursor: default;
+
         transition: left 500ms ease-in-out;  
     }
 
-/* JS Classes */
+    /* JS Classes */
 
     .info-slide{
         left: 13rem;
@@ -105,10 +123,25 @@ nav{
 
 .website-container{
     position: fixed;
+    top: 0;
+    left: 0; 
     width: 100%;
     height: 100%;
-
     overflow: hidden;
+
+    transition: left 750ms ease;
+}
+
+
+/* Controls position of website-container */
+
+
+.out-of-view-right{
+    left: 100vw; 
+}
+
+.out-of-view-left{
+    left: -100vw; 
 }
 
 .website-preview{
@@ -153,35 +186,35 @@ nav{
     transition-delay: calc(50ms * 2);
 }
 
-.p6{
+/* .p6{
     background-color: coral;
     transform: translateX(calc(100vw * (5 / var(--projects))));
     transition-delay: calc(50ms * 1);
-}
+} */
 
 
 /* Hover p1 */
 
 
 .p1:hover ~ .p2 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*5));
-}
-
-.p1:hover ~ .p3 {
     transform: translateX(calc(100vw - var(--spacer-preview)*4));
 }
 
-.p1:hover ~ .p4 {
+.p1:hover ~ .p3 {
     transform: translateX(calc(100vw - var(--spacer-preview)*3));
 }
 
-.p1:hover ~ .p5 {
+.p1:hover ~ .p4 {
     transform: translateX(calc(100vw - var(--spacer-preview)*2));
 }
 
-.p1:hover ~ .p6 {
+.p1:hover ~ .p5 {
     transform: translateX(calc(100vw - var(--spacer-preview)*1));
 }
+
+/* .p1:hover ~ .p6 {
+    transform: translateX(calc(100vw - var(--spacer-preview)*1));
+} */
 
 
 
@@ -191,24 +224,24 @@ nav{
 }
 
 .p2:hover ~ .p3 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*5));
-}
-
-.p2:hover ~ .p3 {
     transform: translateX(calc(100vw - var(--spacer-preview)*4));
 }
 
-.p2:hover ~ .p4 {
+.p2:hover ~ .p3 {
     transform: translateX(calc(100vw - var(--spacer-preview)*3));
 }
 
-.p2:hover ~ .p5 {
+.p2:hover ~ .p4 {
     transform: translateX(calc(100vw - var(--spacer-preview)*2));
 }
 
-.p2:hover ~ .p6 {
+.p2:hover ~ .p5 {
     transform: translateX(calc(100vw - var(--spacer-preview)*1));
 }
+
+/* .p2:hover ~ .p6 {
+    transform: translateX(calc(100vw - var(--spacer-preview)*1));
+} */
 
 
 
@@ -223,16 +256,16 @@ nav{
 }
 
 .p3:hover ~ .p4 {
-    transform: translateX(calc(100vw - var(--spacer-preview) * 3));
-}
-
-.p3:hover ~ .p5 {
     transform: translateX(calc(100vw - var(--spacer-preview) * 2));
 }
 
-.p3:hover ~ .p6 {
+.p3:hover ~ .p5 {
     transform: translateX(calc(100vw - var(--spacer-preview) * 1));
 }
+
+/* .p3:hover ~ .p6 {
+    transform: translateX(calc(100vw - var(--spacer-preview) * 1));
+} */
 
 
 /* Hover p4 */
@@ -250,12 +283,12 @@ nav{
 }
 
 .p4:hover ~ .p5 {
-    transform: translateX(calc(100vw - var(--spacer-preview) * 2));
-}
-
-.p4:hover ~ .p6 {
     transform: translateX(calc(100vw - var(--spacer-preview) * 1));
 }
+
+/* .p4:hover ~ .p6 {
+    transform: translateX(calc(100vw - var(--spacer-preview) * 1));
+} */
 
 
 
@@ -279,12 +312,12 @@ nav{
     transform: translateX(calc(var(--spacer-preview) * 4));
 }
 
-.p5:hover ~ .p6 {
+/* .p5:hover ~ .p6 {
     transform: translateX(calc(100vw - var(--spacer-preview) * 1));
-}
+} */
 
 
-/* Hover P6 */
+/* Hover P6
 
 .website-container:has(.p6:hover) .p2 {
     transform: translateX(calc(var(--spacer-preview) * 1));
@@ -304,12 +337,27 @@ nav{
 
 .p6:hover {
     transform: translateX(calc(var(--spacer-preview) * 5));
+} */
+
+
+
+
+
+/* Iframes */
+
+iframe{
+    position: fixed;
+    left:0; 
+    top: 100vh; 
+    width: 100vw; 
+    height: calc(100vw - var(--spacer-iframe)); 
+
+    display: none;
 }
 
 
-
-
-
+    /* Run JS to first remove display none, and after 100ms give it the class to come in on top */
+    /* Disable the the display  */
 
 
 
