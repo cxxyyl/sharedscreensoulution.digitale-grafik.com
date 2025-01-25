@@ -5,7 +5,7 @@
 --spacer-s: 0.5rem; 
 --spacer-m: 1rem;
 --spacer-l: 2rem; 
---spacer-preview: 3rem; 
+--spacer-xl: 3rem; 
 --spacer-iframe: 3.5rem;
 
 --radius-m: 2rem; 
@@ -38,12 +38,7 @@ html, body{
 
 /* Helper Classes */
 
-.hidden{
-    user-select: none;
-    pointer-events: none;
-    opacity: 0;
-    transform: translateX(50vw);
-}
+
 
 
 
@@ -78,10 +73,6 @@ nav{
         cursor: pointer;
     }
 
-    #projects:hover, #workshop:hover{
-        background-color: var(--c-dark);
-        color: var(--c-light);
-    }
 
     /* Added by JS */
     .button--selected{
@@ -102,7 +93,8 @@ nav{
 
         cursor: default;
 
-        transition: left 500ms ease-in-out;  
+        transition: left 500ms ease-in-out, width 300ms ease-in-out;  
+        
     }
 
     /* JS Classes */
@@ -111,11 +103,40 @@ nav{
         left: 13rem;
     }
 
+    .overlay-mode{
+        width: calc(100vw - (var(--spacer-s) + 15.5rem));
+    }
+
     .name-year-wrapper{
         display: flex;
         justify-content: flex-start;
         gap: var(--spacer-l);
     }
+
+    #close{
+        position: absolute; 
+        right: var(--spacer-s);  
+        user-select: none; 
+    }
+
+    .close-slide{
+        pointer-events: none;
+        transform: translateX(var(--spacer-xl));
+
+    }
+
+
+
+    /* Hovers */
+
+
+    #projects:hover, #workshop:hover, #close:hover{
+        background-color: var(--c-dark);
+        color: var(--c-light);
+    }
+
+
+
 
 }
 
@@ -150,7 +171,11 @@ nav{
     left: 0; 
     height: 100vh;
     width: 100vw;    
+
     box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
+
     transition: transform ease-in-out 500ms ;
 }
 
@@ -181,7 +206,7 @@ nav{
 }
 
 .p5{
-    background-color: #DDE9FD;
+    background-color: #ff6f00;
     transform: translateX(calc(100vw * (4 / var(--projects))));
     transition-delay: calc(50ms * 2);
 }
@@ -197,50 +222,50 @@ nav{
 
 
 .p1:hover ~ .p2 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*4));
+    transform: translateX(calc(100vw - var(--spacer-xl)*4));
 }
 
 .p1:hover ~ .p3 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*3));
+    transform: translateX(calc(100vw - var(--spacer-xl)*3));
 }
 
 .p1:hover ~ .p4 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*2));
+    transform: translateX(calc(100vw - var(--spacer-xl)*2));
 }
 
 .p1:hover ~ .p5 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*1));
+    transform: translateX(calc(100vw - var(--spacer-xl)*1));
 }
 
 /* .p1:hover ~ .p6 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*1));
+    transform: translateX(calc(100vw - var(--spacer-xl)*1));
 } */
 
 
 
 /* Hover p2 */
 .p2:hover  {
-    transform: translateX(var(--spacer-preview));
+    transform: translateX(var(--spacer-xl));
 }
 
 .p2:hover ~ .p3 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*4));
+    transform: translateX(calc(100vw - var(--spacer-xl)*4));
 }
 
 .p2:hover ~ .p3 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*3));
+    transform: translateX(calc(100vw - var(--spacer-xl)*3));
 }
 
 .p2:hover ~ .p4 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*2));
+    transform: translateX(calc(100vw - var(--spacer-xl)*2));
 }
 
 .p2:hover ~ .p5 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*1));
+    transform: translateX(calc(100vw - var(--spacer-xl)*1));
 }
 
 /* .p2:hover ~ .p6 {
-    transform: translateX(calc(100vw - var(--spacer-preview)*1));
+    transform: translateX(calc(100vw - var(--spacer-xl)*1));
 } */
 
 
@@ -248,46 +273,46 @@ nav{
 /* Hover p3 */
 
 .website-container:has(.p3:hover) .p2 {
-    transform: translateX(calc(var(--spacer-preview) * 1));
+    transform: translateX(calc(var(--spacer-xl) * 1));
 }
 
 .p3:hover {
-    transform: translateX(calc(var(--spacer-preview) * 2));
+    transform: translateX(calc(var(--spacer-xl) * 2));
 }
 
 .p3:hover ~ .p4 {
-    transform: translateX(calc(100vw - var(--spacer-preview) * 2));
+    transform: translateX(calc(100vw - var(--spacer-xl) * 2));
 }
 
 .p3:hover ~ .p5 {
-    transform: translateX(calc(100vw - var(--spacer-preview) * 1));
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
 }
 
 /* .p3:hover ~ .p6 {
-    transform: translateX(calc(100vw - var(--spacer-preview) * 1));
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
 } */
 
 
 /* Hover p4 */
 
 .website-container:has(.p4:hover) .p2 {
-    transform: translateX(calc(var(--spacer-preview) * 1));
+    transform: translateX(calc(var(--spacer-xl) * 1));
 }
 
 .website-container:has(.p4:hover) .p3 {
-    transform: translateX(calc(var(--spacer-preview) * 2));
+    transform: translateX(calc(var(--spacer-xl) * 2));
 }
 
 .p4:hover {
-    transform: translateX(calc(var(--spacer-preview) * 3));
+    transform: translateX(calc(var(--spacer-xl) * 3));
 }
 
 .p4:hover ~ .p5 {
-    transform: translateX(calc(100vw - var(--spacer-preview) * 1));
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
 }
 
 /* .p4:hover ~ .p6 {
-    transform: translateX(calc(100vw - var(--spacer-preview) * 1));
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
 } */
 
 
@@ -297,46 +322,46 @@ nav{
 /* Hover p5 */
 
 .website-container:has(.p5:hover) .p2 {
-    transform: translateX(calc(var(--spacer-preview) * 1));
+    transform: translateX(calc(var(--spacer-xl) * 1));
 }
 
 .website-container:has(.p5:hover) .p3 {
-    transform: translateX(calc(var(--spacer-preview) * 2));
+    transform: translateX(calc(var(--spacer-xl) * 2));
 }
 
 .website-container:has(.p5:hover) .p4 {
-    transform: translateX(calc(var(--spacer-preview) * 3));
+    transform: translateX(calc(var(--spacer-xl) * 3));
 }
 
 .p5:hover {
-    transform: translateX(calc(var(--spacer-preview) * 4));
+    transform: translateX(calc(var(--spacer-xl) * 4));
 }
 
 /* .p5:hover ~ .p6 {
-    transform: translateX(calc(100vw - var(--spacer-preview) * 1));
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
 } */
 
 
 /* Hover P6
 
 .website-container:has(.p6:hover) .p2 {
-    transform: translateX(calc(var(--spacer-preview) * 1));
+    transform: translateX(calc(var(--spacer-xl) * 1));
 }
 
 .website-container:has(.p6:hover) .p3 {
-    transform: translateX(calc(var(--spacer-preview) * 2));
+    transform: translateX(calc(var(--spacer-xl) * 2));
 }
 
 .website-container:has(.p6:hover) .p4 {
-    transform: translateX(calc(var(--spacer-preview) * 3));
+    transform: translateX(calc(var(--spacer-xl) * 3));
 }
 
 .website-container:has(.p6:hover) .p5 {
-    transform: translateX(calc(var(--spacer-preview) * 4));
+    transform: translateX(calc(var(--spacer-xl) * 4));
 }
 
 .p6:hover {
-    transform: translateX(calc(var(--spacer-preview) * 5));
+    transform: translateX(calc(var(--spacer-xl) * 5));
 } */
 
 
@@ -345,19 +370,26 @@ nav{
 
 /* Iframes */
 
-iframe{
+.website-overlay{
     position: fixed;
     left:0; 
     top: 100vh; 
     width: 100vw; 
     height: calc(100vw - var(--spacer-iframe)); 
 
-    display: none;
+    background-color: var(--c-light);
+    visibility: none;
+
+    transition: top 500ms ease-in-out;
+}
+
+.show-overlay{
+    visibility: visible;
+    top: var(--spacer-iframe); 
+    z-index: 2;
 }
 
 
-    /* Run JS to first remove display none, and after 100ms give it the class to come in on top */
-    /* Disable the the display  */
 
 
 

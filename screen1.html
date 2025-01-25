@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sharedscreensoulution</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+
+        <button id="projects" class="button--selected">Projects</button>
+        <button id="workshop">Workshop</button>
+
+
+        <!-- All Infos for Project Websites -->
+        <button class="website-info" data-target='project1'>
+            <div class="name-year-wrapper">
+                <p>Leoni, Maja, Sarah</p>
+                <p>2024</p>
+            </div>
+            <p>politics-of-love.kunsthaushamburg.de</p>
+        </button>
+
+        <button class="website-info" data-target='project2'>
+            <div class="name-year-wrapper">
+                <p>Tim, Leoni</p>
+                <p>2024</p>
+            </div>
+            <p>9to5.hfbk.hamburg</p>
+        </button>
+
+        <button class="website-info" data-target='project3'>
+            <div class="name-year-wrapper">
+                <p>Liza, Sok</p>
+                <p>2024</p>
+            </div>
+            <p>tiaa.digitale-grafik.com</p>
+        </button>
+
+        <button class="website-info" data-target='project4'>
+            <div class="name-year-wrapper">
+                <p>Yeji, Johann</p>
+                <p>2025</p>
+            </div>
+            <p>Hiscox Kunstpreis Website</p>
+        </button>
+
+        <button class="website-info" data-target='project5'>
+            <div class="name-year-wrapper">
+                <p>Johann</p>
+                <p>2024</p>
+            </div>
+            <p>wandering-stones.com</p>
+        </button>
+
+
+        <!-- All Infos for Workshop Websites -->
+        <button class="website-info" data-target='workshop1'>
+            <div class="name-year-wrapper">
+                <p>Name Vorname 1</p>
+                <p>2024</p>
+            </div>
+            <p>www.mydomain-1.net</p>
+        </button>
+
+        <button id="close" class="close-slide">✕</button>
+    </nav>
+
+    <main id="project-websites" class="website-container">
+        <section class="website-preview p1" data-target="project1"><video src="content/dog.mp4" type="video/mp4" autoplay muted loop></video></section>
+        <section class="website-preview p2" data-target="project2"><video src="content/spin.mp4" type="video/mp4" autoplay muted loop></video></section>
+        <section class="website-preview p3" data-target="project3"><video src="content/dog.mp4" type="video/mp4" autoplay muted loop></video></section>
+        <section class="website-preview p4" data-target="project4"><video src="content/spin.mp4" type="video/mp4" autoplay muted loop></video></section>
+        <section class="website-preview p5" data-target="project5"><video src="content/dog.mp4" type="video/mp4" autoplay muted loop></video></section>
+    </main>
+
+    <main id="workshop-websites" class="website-container out-of-view-right">
+        <section class="website-preview p1" data-target="workshop1"><video src="content/spin.mp4" type="video/mp4" autoplay muted loop></video></section>
+        <section class="website-preview p2" data-target="workshop2"><video src="content/dog.mp4" type="video/mp4" autoplay muted loop></video></section>
+        <section class="website-preview p3" data-target="workshop3"><video src="content/spin.mp4" type="video/mp4" autoplay muted loop></video></section>
+        <section class="website-preview p4" data-target="workshop4"><video src="content/dog.mp4" type="video/mp4" autoplay muted loop></video></section>
+        <section class="website-preview p5" data-target="workshop5"><video src="content/spin.mp4" type="video/mp4" autoplay muted loop></video></section>
+   
+    </main>
+    
+    <aside>
+        <iframe class="website-overlay" data-src="https://thesis.digitale-grafik.com/" frameborder="0" data-target="project1"></iframe>
+        <iframe class="website-overlay" data-src="https://9to5.hfbk.hamburg/" frameborder="0" data-target="project2"></iframe>
+        <iframe class="website-overlay" data-src="https://archives-of-the-body.hfbk.net/" frameborder="0" data-target="project3"></iframe>
+    </aside>
+
+<script src="script.js"></script>
+</body>
+</html>
