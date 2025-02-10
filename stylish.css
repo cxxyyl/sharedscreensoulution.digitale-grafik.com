@@ -1,0 +1,752 @@
+:root{
+
+
+--spacer-xs: 0.25rem;     
+--spacer-s: 0.5rem; 
+--spacer-m: 1rem;
+--spacer-l: 2rem; 
+--spacer-xl: 3rem; 
+--spacer-iframe: 3.5rem;
+
+--radius-m: 2rem; 
+
+--c-dark:#000; 
+--c-light:#fff;
+
+
+--projects: 5;
+--workshops: 8;
+}
+
+/* Reset and Basic Styling */
+
+p, h1, h2, h3, h4, h5, h6{
+    padding: 0;
+    margin: 0;
+}
+
+
+html, body{
+    padding: 0; 
+    margin: 0;
+
+    color: var(--dark);
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+}
+
+
+/* Helper Classes */
+
+
+
+
+
+
+
+/* Nav */
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: calc(100% - var(--spacer-m));
+    padding: var(--spacer-s) var(--spacer-s) var(--spacer-m) var(--spacer-s);
+
+    background-color: var(--c-light);
+    border-bottom: 1px solid ;
+
+    z-index: 99;
+
+    transition: background-color 300ms ease-in-out;
+
+    button{
+        padding: var(--spacer-xs) var(--spacer-s);
+        border-radius:var(--radius-m);
+
+        border: 1px solid var(--c-dark);
+        background-color: transparent;
+     
+        font-size: 1.2rem;
+
+        transition: all 300ms ease-in-out;
+
+        cursor: pointer;
+    }
+
+
+    /* Added by JS */
+    .button--selected{
+        background-color: var(--c-dark);
+        color: var(--c-light);
+    }
+
+    .website-info{
+        padding: var(--spacer-xs) var(--spacer-s);
+        border-radius:var(--radius-m);
+
+        border: 1px solid var(--c-dark);
+        background-color: transparent;
+     
+        font-size: 1.2rem;
+
+        transition: all 300ms ease-in-out;
+
+
+        position: fixed;
+        top: var(--spacer-s);
+        left: 100vw;
+        width: calc(100vw - (var(--spacer-s) + 13rem));
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        cursor: default;
+
+        transition: left 500ms ease-in-out, width 300ms ease-in-out;  
+        
+    }
+
+    /* JS Classes */
+
+    .info-slide{
+        left: 13rem;
+    }
+
+    .overlay-mode{
+        width: calc(100vw - (var(--spacer-s) + 15.5rem));
+    }
+
+    .name-year-wrapper{
+        display: flex;
+        justify-content: flex-start;
+        gap: var(--spacer-l);
+    }
+
+    #close{
+        position: absolute; 
+        right: var(--spacer-s);  
+        user-select: none; 
+    }
+
+    .close-slide{
+        pointer-events: none;
+        transform: translateX(var(--spacer-xl));
+
+    }
+
+
+
+    /* Hovers */
+    #projects:hover, #workshop:hover, #close:hover{
+        background-color: var(--c-dark);
+        color: var(--c-light);
+    }
+
+
+
+
+}
+
+/* Website Snippets */
+
+.website-container{
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    transition: left 750ms ease;
+}
+
+
+
+
+
+
+
+/* Controls position of website-container */
+
+
+.out-of-view-right{
+    left: 100vw; 
+}
+
+.out-of-view-left{
+    left: -100vw; 
+}
+
+.website-preview{
+    position: absolute;
+    top: 0;
+    left: 0; 
+    height: 100vh;
+    width: 100vw;    
+
+    box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
+
+    transition: transform ease-in-out 500ms ;
+
+}
+
+#project-websites{
+    video{
+        transform: translateY(-20px);
+        height: 102.2%;
+    }
+}
+
+
+.w1, .w5, .w6{
+
+    video{
+        transform: translateY(-26px);
+        height: 103%; 
+    }
+}
+
+.w2 video{
+    transform: translateY(0px);
+    height: 100%;
+}
+
+.w3 video{
+    transform: translateY(-26px);
+    height: 107%; 
+}
+
+.w4 video{
+    transform: translateY(-26px);
+    height: 107%; 
+}
+
+
+.w7{
+    background-color: #e6ff00;
+    
+    video{
+        transform: translateY(57px);
+        height: 94%;
+    }
+}
+
+.w8{
+    background-color: white;
+    
+    video{
+        transform: translateY(57px);
+        height: 94%;
+        margin-right: -5px;
+    }
+}
+
+
+
+/* 
+All the positioning for freeing up the screen, when hovering on one of the 
+website-preview elements. I think it would have been smarter to do that in
+js with a loop, but it feels nice that I made it happen with css and using
+js only for assigning classes. 
+                                        ~ really happy, that you my dear :has exist – it wouldn't have been possible without you ❤ ~
+
+Note! this is not scalable – it only works for 5 elements... ha!
+*/
+
+
+.p1{
+    transform: translateX(0);
+    transition-delay: calc(50ms * 6);
+}
+
+.p2{
+    transform: translateX(calc(100vw * (1 / var(--projects))));
+    transition-delay: calc(50ms * 5);
+}
+
+.p3{
+    transform: translateX(calc(100vw * (2 / var(--projects))));
+    transition-delay: calc(50ms * 4);
+}
+
+.p4{
+    transform: translateX(calc(100vw * (3 / var(--projects))));
+    transition-delay: calc(50ms * 3);
+}
+
+.p5{
+    transform: translateX(calc(100vw * (4 / var(--projects))));
+    transition-delay: calc(50ms * 2);
+}
+
+
+
+/* Hover p1 */
+
+
+.p1:hover ~ .p2 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*4));
+}
+
+.p1:hover ~ .p3 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*3));
+}
+
+.p1:hover ~ .p4 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*2));
+}
+
+.p1:hover ~ .p5 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*1));
+}
+
+
+
+/* Hover p2 */
+.p2:hover  {
+    transform: translateX(var(--spacer-xl));
+}
+
+.p2:hover ~ .p3 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*4));
+}
+
+.p2:hover ~ .p3 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*3));
+}
+
+.p2:hover ~ .p4 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*2));
+}
+
+.p2:hover ~ .p5 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*1));
+}
+
+
+/* Hover p3 */
+
+.website-container:has(.p3:hover) .p2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.p3:hover {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.p3:hover ~ .p4 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 2));
+}
+
+.p3:hover ~ .p5 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
+}
+
+
+
+/* Hover p4 */
+
+.website-container:has(.p4:hover) .p2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.website-container:has(.p4:hover) .p3 {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.p4:hover {
+    transform: translateX(calc(var(--spacer-xl) * 3));
+}
+
+.p4:hover ~ .p5 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
+}
+
+
+
+/* Hover p5 */
+
+.website-container:has(.p5:hover) .p2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.website-container:has(.p5:hover) .p3 {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.website-container:has(.p5:hover) .p4 {
+    transform: translateX(calc(var(--spacer-xl) * 3));
+}
+
+.p5:hover {
+    transform: translateX(calc(var(--spacer-xl) * 4));
+}
+
+
+
+
+
+
+/* Workshops */
+
+
+
+.w1{
+    transform: translateX(0);
+    transition-delay: calc(50ms * 8);
+}
+
+.w2{
+    transform: translateX(calc(100vw * (1 / var(--workshops))));
+    transition-delay: calc(50ms * 7);
+}
+
+.w3{
+    transform: translateX(calc(100vw * (2 / var(--workshops))));
+    transition-delay: calc(50ms * 6);
+}
+
+.w4{
+    transform: translateX(calc(100vw * (3 / var(--workshops))));
+    transition-delay: calc(50ms * 5);
+}
+
+.w5{
+    transform: translateX(calc(100vw * (4 / var(--workshops))));
+    transition-delay: calc(50ms * 4);
+}
+
+.w6{
+    transform: translateX(calc(100vw * (5 / var(--workshops))));
+    transition-delay: calc(50ms * 3);
+}
+
+.w7{
+    transform: translateX(calc(100vw * (6 / var(--workshops))));
+    transition-delay: calc(50ms * 2);
+}
+
+.w8{
+    transform: translateX(calc(100vw * (7 / var(--workshops))));
+    transition-delay: calc(50ms * 1);
+}
+
+
+/* Hover w1 */
+
+.w1:hover ~ .w2 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*7));
+}
+
+.w1:hover ~ .w3 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*6));
+}
+
+.w1:hover ~ .w4 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*5));
+}
+
+.w1:hover ~ .w5 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*4));
+}
+
+.w1:hover ~ .w6 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*3));
+}
+
+.w1:hover ~ .w7 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*2));
+}
+
+.w1:hover ~ .w8 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*1));
+}
+
+
+
+/* Hover w2 */
+
+.w2:hover  {
+    transform: translateX(var(--spacer-xl));
+}
+
+.w2:hover ~ .w3 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*7));
+}
+
+.w2:hover ~ .w3 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*6));
+}
+
+.w2:hover ~ .w4 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*5));
+}
+
+.w2:hover ~ .w5 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*4));
+}
+
+.w2:hover ~ .w6 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*3));
+}
+
+.w2:hover ~ .w7 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*2));
+}
+
+.w2:hover ~ .w8 {
+    transform: translateX(calc(100vw - var(--spacer-xl)*1));
+}
+
+
+
+/* Hover w3 */
+
+.website-container:has(.w3:hover) .w2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.w3:hover {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.w3:hover ~ .w4 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 5));
+}
+
+.w3:hover ~ .w5 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 4));
+}
+
+.w3:hover ~ .w6 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 3));
+}
+
+.w3:hover ~ .w7 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 2));
+}
+
+.w3:hover ~ .w8 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
+}
+
+
+
+/* Hover w4 */
+
+.website-container:has(.w4:hover) .w2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.website-container:has(.w4:hover) .w3 {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.w4:hover {
+    transform: translateX(calc(var(--spacer-xl) * 3));
+}
+
+.w4:hover ~ .w5 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 4));
+}
+
+.w4:hover ~ .w6 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 3));
+}
+
+.w4:hover ~ .w7 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 2));
+}
+
+.w4:hover ~ .w8 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
+}
+
+
+
+
+
+/* Hover w5 */
+
+.website-container:has(.w5:hover) .w2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.website-container:has(.w5:hover) .w3 {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.website-container:has(.w5:hover) .w4 {
+    transform: translateX(calc(var(--spacer-xl) * 3));
+}
+
+.w5:hover {
+    transform: translateX(calc(var(--spacer-xl) * 4));
+}
+
+.w5:hover ~ .w6 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 3));
+} 
+
+.w5:hover ~ .w7 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 2));
+} 
+
+.w5:hover ~ .w8 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
+} 
+
+
+
+/* Hover w6 */
+
+.website-container:has(.w6:hover) .w2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.website-container:has(.w6:hover) .w3 {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.website-container:has(.w6:hover) .w4 {
+    transform: translateX(calc(var(--spacer-xl) * 3));
+}
+
+.website-container:has(.w6:hover) .w5 {
+    transform: translateX(calc(var(--spacer-xl) * 4));
+}
+
+.w6:hover {
+    transform: translateX(calc(var(--spacer-xl) * 5));
+} 
+
+.w6:hover ~ .w7 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 2));
+} 
+
+.w6:hover ~ .w8 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
+} 
+
+
+
+/* Hover w7 */
+
+.website-container:has(.w7:hover) .w2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.website-container:has(.w7:hover) .w3 {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.website-container:has(.w7:hover) .w4 {
+    transform: translateX(calc(var(--spacer-xl) * 3));
+}
+
+.website-container:has(.w7:hover) .w5 {
+    transform: translateX(calc(var(--spacer-xl) * 4));
+}
+
+.website-container:has(.w7:hover) .w6 {
+    transform: translateX(calc(var(--spacer-xl) * 5));
+}
+
+.w7:hover {
+    transform: translateX(calc(var(--spacer-xl) * 6));
+} 
+
+.w7:hover ~ .w8 {
+    transform: translateX(calc(100vw - var(--spacer-xl) * 1));
+} 
+
+
+
+/* Hover w8 */
+
+.website-container:has(.w8:hover) .w2 {
+    transform: translateX(calc(var(--spacer-xl) * 1));
+}
+
+.website-container:has(.w8:hover) .w3 {
+    transform: translateX(calc(var(--spacer-xl) * 2));
+}
+
+.website-container:has(.w8:hover) .w4 {
+    transform: translateX(calc(var(--spacer-xl) * 3));
+}
+
+.website-container:has(.w8:hover) .w5 {
+    transform: translateX(calc(var(--spacer-xl) * 4));
+}
+
+.website-container:has(.w8:hover) .w6 {
+    transform: translateX(calc(var(--spacer-xl) * 5));
+}
+
+.website-container:has(.w8:hover) .w7 {
+    transform: translateX(calc(var(--spacer-xl) * 6));
+} 
+
+.w8:hover {
+    transform: translateX(calc(var(--spacer-xl) * 7));
+} 
+
+
+
+/* Iframes */
+
+.website-overlay{
+    position: fixed;
+    left:0; 
+    top: 100vh; 
+    width: 100vw; 
+    height: calc(100vh - var(--spacer-iframe)); 
+
+    background-color: var(--c-light);
+    visibility: none;
+
+    transition: top 500ms ease-in-out;
+}
+
+.show-overlay{
+    visibility: visible;
+    top: var(--spacer-iframe); 
+    z-index: 2;
+}
+
+
+
+/* Colors for NAV when Iframe is active */
+
+/* Website Projects */
+.project1{background-color: #E0FFC8 ;} /* politics of love */
+.project2{background-color: #99ff00;} /* 9 to 5 (v1) */
+.project3{background-color: #3dceff;} /* tiaa */
+.project4{background-color: #b4bccd;} /* hiscox */
+.project5{background-color: #0ec4a5;} /* wandering stones */
+
+.project6{background-color:#FCEED4;} /* archives of the body*/
+.project7{background-color:#538DA6;} /* die neue frau */
+/* .project8{background-color:  ;} 9 to5 (v2) */
+.project9{background-color: #A0DA67;} /* kk schrift */
+.project10{background-color: #FF5555;} /* thesis */
+
+
+/* Veras Workshop */
+.workshop1{background-color: darkgoldenrod;} /* Gravity Wolf Serif */
+.workshop2{background-color: lightgray;} /* Hyper Profile */
+.workshop3{background-color: #fcc4e0 ;} /* Kawaiicore */
+.workshop4{background-color: gold;} /* dreams */
+.workshop5{background-color: darkseagreen;} /* on site */
+
+
+
+
